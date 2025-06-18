@@ -183,7 +183,7 @@ const Dashboard: React.FC = () => {
               <Typography variant="body2" sx={{ color: 'rgba(46,46,46,0.911)' }}>Resumen General</Typography>
             </Box>
             {/* Grupo usuario + búsqueda desplazados a la derecha */}
-            <Box sx={{ display: 'flex', alignItems: 'center', ml: '15vw' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', ml: '21vw' }}>
               {/* Usuario centrado */}
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 'auto', minWidth: 220 }}>
                 <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 48, height: 48, mb: 0 }} />
@@ -191,7 +191,7 @@ const Dashboard: React.FC = () => {
                 <Typography variant="caption" sx={{ color: 'rgba(46,46,46,0.911)' }}>Administrador</Typography>
               </Box>
               {/* Barra de búsqueda e iconos */}
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', ml: 4, mr: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', mr: 2, ml: '6vw' }}>
                 <InputBase 
                   placeholder="Buscar..." 
                   sx={{ 
