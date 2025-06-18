@@ -71,102 +71,96 @@ const Dashboard: React.FC = () => {
       display: 'flex', 
       minHeight: '100vh', 
       bgcolor: 'white', 
-      p: '5px',
       margin: 0,
       boxSizing: 'border-box',
       position: 'relative'
     }}>
       {/* Sidebar */}
-      <Box sx={{
-        height: 'calc(100vh - 10px)',
-        mr: '5px',
-        display: { xs: 'none', md: 'block' },
-      }}>
-        <Drawer
-          variant="permanent"
-          open
-          sx={{
+      <Drawer
+        variant="permanent"
+        open
+        sx={{
+          width: drawerWidth,
+          flexShrink: 0,
+          '& .MuiDrawer-paper': {
             width: drawerWidth,
-            flexShrink: 0,
-            [`& .MuiDrawer-paper`]: {
-              width: drawerWidth,
-              boxSizing: 'border-box',
-              bgcolor: 'rgb(19,19,19)',
-              color: 'rgb(216,216,216)',
-              borderRight: 0,
-              borderRadius: '26px',
-              height: 'calc(100vh - 10px)',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              boxShadow: '5px 0 10px rgba(53,53,53,0.596)',
-              p: '6px',
-            },
-          }}
-        >
-          <Box>
-            {/* Iconos superiores */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', pt: '15px', pb: '15px', borderBottom: '1px solid gray' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><DashboardIcon fontSize="small" /></Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><StarIcon fontSize="small" /></Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ChevronLeftIcon fontSize="small" /></Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ChevronRightIcon fontSize="small" /></Box>
-            </Box>
-            {/* Círculos de usuario */}
-            <Box sx={{ display: 'flex', justifyContent: 'center', gap: '10px', py: '15px' }}>
-              <Box sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none' }}>
-                <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 40, height: 40 }} />
-              </Box>
-              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><NotificationsIcon fontSize="small" /></IconButton>
-              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><StarIcon fontSize="small" /></IconButton>
-              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><SearchIcon fontSize="small" /></IconButton>
-              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><TuneIcon fontSize="small" /></IconButton>
-            </Box>
-            {/* Menú */}
-            <List sx={{ mt: 2, px: '35px' }}>
-              {menuItems.map((item, idx) => (
-                <ListItem
-                  button
-                  key={item.text}
-                  selected={item.active}
-                  sx={{
-                    bgcolor: item.active ? '#ffcc00' : 'transparent',
-                    color: item.active ? 'black' : 'rgb(216,216,216)',
-                    fontWeight: item.active ? 'bold' : 'normal',
-                    borderRadius: '25px',
-                    border: item.active ? '2px solid #ffcc00' : 'none',
-                    boxShadow: item.active ? '0px 0px 10px #ffcc00' : 'none',
-                    mb: '15px',
-                    pl: 2.5,
-                    pr: 2,
-                    fontSize: 18,
-                    alignItems: 'center',
-                    gap: '10px',
-                    position: 'relative',
-                    '&:hover': {
-                      bgcolor: 'rgba(255,204,0,0.6)',
-                    },
-                  }}
-                >
-                  <ListItemIcon sx={{ color: item.active ? 'black' : 'rgb(216,216,216)', minWidth: 36 }}>{item.icon}</ListItemIcon>
-                  <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: item.active ? 'bold' : 'normal', fontSize: 18 }} />
-                  <ChevronRightIcon fontSize="small" sx={{ position: 'absolute', right: 10, color: item.active ? 'black' : 'rgb(236,236,236)' }} />
-                </ListItem>
-              ))}
-            </List>
+            boxSizing: 'border-box',
+            bgcolor: 'rgb(19,19,19)',
+            color: 'rgb(216,216,216)',
+            borderRight: 0,
+            borderRadius: '26px',
+            margin: '3px',
+            height: 'calc(100vh - 6px)',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'space-between',
+            boxShadow: '5px 0 10px rgba(53,53,53,0.596)',
+            p: '6px',
+          },
+        }}
+      >
+        <Box>
+          {/* Iconos superiores */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', pt: '15px', pb: '15px', borderBottom: '1px solid gray' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><DashboardIcon fontSize="small" /></Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><StarIcon fontSize="small" /></Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ChevronLeftIcon fontSize="small" /></Box>
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ChevronRightIcon fontSize="small" /></Box>
           </Box>
-          {/* Iconos inferiores */}
-          <Box sx={{ textAlign: 'center', py: '20px' }}>
-            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><ArrowLeftIcon /></IconButton>
-            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><HeadphonesIcon /></IconButton>
-            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><SettingsIcon /></IconButton>
-            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><ArrowUpwardIcon /></IconButton>
+          {/* Círculos de usuario */}
+          <Box sx={{ display: 'flex', justifyContent: 'center', gap: '10px', py: '15px' }}>
+            <Box sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none' }}>
+              <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 40, height: 40 }} />
+            </Box>
+            <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><NotificationsIcon fontSize="small" /></IconButton>
+            <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><StarIcon fontSize="small" /></IconButton>
+            <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><SearchIcon fontSize="small" /></IconButton>
+            <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><TuneIcon fontSize="small" /></IconButton>
           </Box>
-        </Drawer>
-      </Box>
+          {/* Menú */}
+          <List sx={{ mt: 2, px: '35px' }}>
+            {menuItems.map((item, idx) => (
+              <ListItem
+                button
+                key={item.text}
+                selected={item.active}
+                sx={{
+                  bgcolor: item.active ? '#ffcc00' : 'transparent',
+                  color: item.active ? 'black' : 'rgb(216,216,216)',
+                  fontWeight: item.active ? 'bold' : 'normal',
+                  borderRadius: '25px',
+                  border: item.active ? '2px solid #ffcc00' : 'none',
+                  boxShadow: item.active ? '0px 0px 10px #ffcc00' : 'none',
+                  mb: '15px',
+                  pl: 2.5,
+                  pr: 2,
+                  fontSize: 18,
+                  alignItems: 'center',
+                  gap: '10px',
+                  position: 'relative',
+                  '&:hover': {
+                    bgcolor: 'rgba(255,204,0,0.6)',
+                  },
+                }}
+              >
+                <ListItemIcon sx={{ color: item.active ? 'black' : 'rgb(216,216,216)', minWidth: 36 }}>{item.icon}</ListItemIcon>
+                <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: item.active ? 'bold' : 'normal', fontSize: 18 }} />
+                <ChevronRightIcon fontSize="small" sx={{ position: 'absolute', right: 10, color: item.active ? 'black' : 'rgb(236,236,236)' }} />
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+        {/* Iconos inferiores */}
+        <Box sx={{ textAlign: 'center', py: '20px' }}>
+          <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><ArrowLeftIcon /></IconButton>
+          <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><HeadphonesIcon /></IconButton>
+          <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><SettingsIcon /></IconButton>
+          <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><ArrowUpwardIcon /></IconButton>
+        </Box>
+      </Drawer>
 
       {/* Main Content */}
-      <Box sx={{ flexGrow: 1, pr: '5px', pt: '5px', pb: '5px', pl: '5px', display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ flexGrow: 1, pr: '10px', pt: '10px', pb: '10px', pl: '10px', ml: '5px', display: 'flex', flexDirection: 'column' }}>
         {/* Topbar */}
         <Box sx={{
           bgcolor: '#dddcdc',
@@ -174,7 +168,7 @@ const Dashboard: React.FC = () => {
           borderRadius: '26px',
           height: '100px',
           mt: 0,
-          mb: '5px',
+          mb: '10px',
           width: '100%',
           overflow: 'visible',
           ml: 0,
@@ -255,11 +249,11 @@ const Dashboard: React.FC = () => {
           color: 'black',
           borderRadius: '26px',
           p: '20px',
-          height: `calc(100vh - 118px)`,
+          height: `calc(100vh - 138px)`,
           width: '100%',
           overflowY: 'auto',
           boxSizing: 'border-box',
-          mb: '5px',
+          mb: '10px',
           ml: 0,
           border: '1px solid rgb(226,226,226)'
         }}>
