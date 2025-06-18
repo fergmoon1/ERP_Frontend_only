@@ -58,4 +58,5 @@ class ProductoService {
     }
 }
 
-export default new ProductoService(); 
+const productoService = new ProductoService();
+export default productoService; 

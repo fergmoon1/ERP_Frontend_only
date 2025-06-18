@@ -67,14 +67,7 @@ const Dashboard: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ 
-      display: 'flex', 
-      minHeight: '100vh', 
-      bgcolor: 'white', 
-      margin: 0,
-      boxSizing: 'border-box',
-      position: 'relative'
-    }}>
+    <Box sx={{ display: 'flex', height: '100vh', bgcolor: 'white' }}>
       {/* Sidebar */}
       <Drawer
         variant="permanent"
@@ -87,7 +80,6 @@ const Dashboard: React.FC = () => {
             boxSizing: 'border-box',
             bgcolor: 'rgb(19,19,19)',
             color: 'rgb(216,216,216)',
-            borderRight: 0,
             borderRadius: '26px',
             margin: '4px',
             height: 'calc(100vh - 8px)',
@@ -159,24 +151,24 @@ const Dashboard: React.FC = () => {
         </Box>
       </Drawer>
 
-      {/* Main Content */}
-      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', ml: '4px' }}>
-        {/* Topbar */}
+      {/* Contenedor de áreas grises */}
+      <Box sx={{ flexGrow: 1, ml: `${drawerWidth + 4}px`, height: '100vh', position: 'relative', overflow: 'visible' }}>
+        {/* Navbar fijo */}
         <Box sx={{
           bgcolor: '#dddcdc',
           color: 'rgba(46,46,46,0.911)',
           borderRadius: '26px',
           height: '100px',
-          mt: '4px',
-          mr: '4px',
-          mb: '4px',
-          width: '100%',
-          overflow: 'visible',
+          position: 'fixed',
+          top: '4px',
+          left: `${drawerWidth + 8}px`,
+          right: '4px',
+          zIndex: 1200,
           display: 'flex',
           alignItems: 'center',
           px: '15px',
           boxSizing: 'border-box',
-          position: 'relative'
+          width: `calc(100vw - ${drawerWidth + 12}px)`
         }}>
           {/* Hamburger para móvil */}
           <Box sx={{ display: { xs: 'block', md: 'none' }, fontSize: 24, cursor: 'pointer', p: 1 }}>
@@ -185,78 +177,62 @@ const Dashboard: React.FC = () => {
           
           {/* Contenido del topbar */}
           <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-            {/* Dashboard texto */}
-            <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
-              <Typography variant="h5" fontWeight="bold" sx={{ mb: 0, textAlign: 'left', color: 'rgba(46,46,46,0.911)' }}>Dashboard</Typography>
-              <Typography variant="body2" sx={{ ml: 0, textAlign: 'left', color: 'rgba(46,46,46,0.911)' }}>Resumen General</Typography>
+            {/* Bloque de título a la izquierda */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: 220 }}>
+              <Typography variant="h5" fontWeight="bold" sx={{ mb: 0, color: 'rgba(46,46,46,0.911)' }}>Dashboard</Typography>
+              <Typography variant="body2" sx={{ color: 'rgba(46,46,46,0.911)' }}>Resumen General</Typography>
             </Box>
-            
-            {/* Perfil */}
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 1, gap: '10px' }}>
-              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+            {/* Grupo usuario + búsqueda desplazados a la derecha */}
+            <Box sx={{ display: 'flex', alignItems: 'center', ml: '15vw' }}>
+              {/* Usuario centrado */}
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mx: 'auto', minWidth: 220 }}>
                 <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 48, height: 48, mb: 0 }} />
                 <Typography variant="subtitle1" fontWeight="bold" sx={{ lineHeight: 1, color: 'rgba(46,46,46,0.911)' }}>Juana Pérez</Typography>
                 <Typography variant="caption" sx={{ color: 'rgba(46,46,46,0.911)' }}>Administrador</Typography>
               </Box>
+              {/* Barra de búsqueda e iconos */}
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: '8px', ml: 4, mr: 2 }}>
+                <InputBase 
+                  placeholder="Buscar..." 
+                  sx={{ 
+                    p: '5px 10px',
+                    borderRadius: '18px',
+                    border: '1px solid #949494',
+                    width: '250px',
+                    height: '36px',
+                    bgcolor: 'white'
+                  }} 
+                />
+                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><NightlightIcon fontSize="small" /></IconButton>
+                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><ZoomInIcon fontSize="small" /></IconButton>
+                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><ZoomOutIcon fontSize="small" /></IconButton>
+              </Box>
             </Box>
-            
-            {/* Búsqueda */}
-            <Box sx={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '8px',
-              position: 'absolute',
-              top: '50%',
-              transform: 'translateY(-50%)',
-              zIndex: 1
-            }}>
-              <InputBase 
-                placeholder="Buscar..." 
-                sx={{ 
-                  p: '5px 10px',
-                  borderRadius: '18px',
-                  border: '1px solid #949494',
-                  width: '250px',
-                  height: '36px',
-                  bgcolor: 'white'
-                }} 
-              />
-              <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><NightlightIcon fontSize="small" /></IconButton>
-              <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><ZoomInIcon fontSize="small" /></IconButton>
-              <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><ZoomOutIcon fontSize="small" /></IconButton>
-            </Box>
-            
-            {/* Hora */}
-            <Box sx={{ 
-              textAlign: 'right', 
-              fontSize: 15, 
-              display: 'flex', 
-              flexDirection: 'column', 
-              lineHeight: 1.8,
-              marginLeft: 'auto',
-              zIndex: 2,
-              color: 'rgba(46,46,46,0.911)'
-            }}>
+            {/* Hora a la derecha */}
+            <Box sx={{ textAlign: 'right', fontSize: 15, display: 'flex', flexDirection: 'column', lineHeight: 1.8, color: 'rgba(46,46,46,0.911)', minWidth: 90, ml: 'auto' }}>
               <Typography variant="body2">7:01 AM</Typography>
               <Typography variant="caption">15/03/2025</Typography>
             </Box>
           </Box>
         </Box>
-
-        {/* Work Area */}
+        {/* Área de trabajo */}
         <Box sx={{
           bgcolor: 'rgb(236,236,236)',
           color: 'black',
           borderRadius: '26px',
-          flex: 1,
-          mr: '4px',
+          position: 'fixed',
+          top: '112px',
+          left: `${drawerWidth + 8}px`,
+          right: '4px',
+          bottom: '4px',
           overflowY: 'auto',
           boxSizing: 'border-box',
-          border: '1px solid rgb(226,226,226)'
+          border: '1px solid rgb(226,226,226)',
+          zIndex: 1100
         }}>
           <Box>
             <Box>
-              <Typography variant="h4" sx={{ fontSize: 24, fontWeight: 'bold', color: '#333', mb: 2 }}>Dashboard</Typography>
+              <Typography variant="h4" sx={{ fontSize: 24, fontWeight: 'bold', color: '#333', mb: 2, pl: '24px' }}>Dashboard</Typography>
             </Box>
             
             {/* Filtros */}
