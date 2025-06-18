@@ -6,8 +6,6 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  AppBar,
-  Toolbar,
   Typography,
   Avatar,
   IconButton,
@@ -52,7 +50,7 @@ import WarningIcon from '@mui/icons-material/Warning';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
 const drawerWidth = 325;
-const marginSize = 8;
+const marginSize = 5;
 
 const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard', active: true },
@@ -69,11 +67,19 @@ const Dashboard: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'white', p: `${marginSize}px` }}>
+    <Box sx={{ 
+      display: 'flex', 
+      minHeight: '100vh', 
+      bgcolor: 'white', 
+      p: '5px',
+      margin: 0,
+      boxSizing: 'border-box',
+      position: 'relative'
+    }}>
       {/* Sidebar */}
       <Box sx={{
-        height: `calc(100vh - ${marginSize * 2}px)`,
-        mr: `${marginSize}px`,
+        height: 'calc(100vh - 10px)',
+        mr: '5px',
         display: { xs: 'none', md: 'block' },
       }}>
         <Drawer
@@ -89,7 +95,7 @@ const Dashboard: React.FC = () => {
               color: 'rgb(216,216,216)',
               borderRight: 0,
               borderRadius: '26px',
-              height: `calc(100vh - ${marginSize * 2}px)`,
+              height: 'calc(100vh - 10px)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between',
@@ -103,7 +109,7 @@ const Dashboard: React.FC = () => {
             <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', pt: '15px', pb: '15px', borderBottom: '1px solid gray' }}>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><DashboardIcon fontSize="small" /></Box>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><StarIcon fontSize="small" /></Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ArrowLeftIcon fontSize="small" /></Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ChevronLeftIcon fontSize="small" /></Box>
               <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ChevronRightIcon fontSize="small" /></Box>
             </Box>
             {/* Círculos de usuario */}
@@ -160,199 +166,526 @@ const Dashboard: React.FC = () => {
       </Box>
 
       {/* Main Content */}
-      <Box sx={{ flexGrow: 1, pr: `${marginSize}px`, pt: 0, pb: 0, pl: 0, display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ flexGrow: 1, pr: '5px', pt: '5px', pb: '5px', pl: '5px', display: 'flex', flexDirection: 'column' }}>
         {/* Topbar */}
-        <AppBar position="static" elevation={0} sx={{
+        <Box sx={{
           bgcolor: '#dddcdc',
           color: 'rgba(46,46,46,0.911)',
-          boxShadow: 1,
           borderRadius: '26px',
           height: '100px',
           mt: 0,
-          mb: `${marginSize}px`,
+          mb: '5px',
           width: '100%',
           overflow: 'visible',
-          ml: 0
+          ml: 0,
+          display: 'flex',
+          alignItems: 'center',
+          px: '15px',
+          boxSizing: 'border-box',
+          position: 'relative'
         }}>
-          <Toolbar sx={{ justifyContent: 'space-between', flexWrap: 'wrap', minHeight: 80, height: '100px', px: 0 }}>
-            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <Typography variant="h5" fontWeight="bold" sx={{ mb: 0, textAlign: 'left' }}>Dashboard</Typography>
-              <Typography variant="body2" color="#888" sx={{ ml: 0, textAlign: 'left' }}>Resumen General</Typography>
+          {/* Hamburger para móvil */}
+          <Box sx={{ display: { xs: 'block', md: 'none' }, fontSize: 24, cursor: 'pointer', p: 1 }}>
+            <MenuIcon />
+          </Box>
+          
+          {/* Contenido del topbar */}
+          <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+            {/* Dashboard texto */}
+            <Box sx={{ display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+              <Typography variant="h5" fontWeight="bold" sx={{ mb: 0, textAlign: 'left', color: 'rgba(46,46,46,0.911)' }}>Dashboard</Typography>
+              <Typography variant="body2" sx={{ ml: 0, textAlign: 'left', color: 'rgba(46,46,46,0.911)' }}>Resumen General</Typography>
             </Box>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, bgcolor: '#fff', borderRadius: '50%', px: 2, py: 0.5, boxShadow: 1, height: 48 }}>
-                <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 48, height: 48, mr: 1 }} />
-                <Box sx={{ textAlign: 'center' }}>
-                  <Typography variant="subtitle1" fontWeight="bold" sx={{ lineHeight: 1 }}>Juana Pérez</Typography>
-                  <Typography variant="caption" color="#888">Administrador</Typography>
-                </Box>
-              </Box>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, bgcolor: 'transparent', borderRadius: 18, px: 0, py: 0, boxShadow: 0 }}>
-                <Paper component="form" sx={{ display: 'flex', alignItems: 'center', px: 1, bgcolor: '#fff', borderRadius: 18, boxShadow: 1, minWidth: 250, height: 36, border: '1px solid #949494' }}>
-                  <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Buscar..." />
-                </Paper>
-                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, ml: 1, '&:hover': { bgcolor: '#eee' } }}><NightlightIcon fontSize="small" /></IconButton>
-                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, ml: 1, '&:hover': { bgcolor: '#eee' } }}><ZoomInIcon fontSize="small" /></IconButton>
-                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, ml: 1, '&:hover': { bgcolor: '#eee' } }}><ZoomOutIcon fontSize="small" /></IconButton>
-              </Box>
-              <Box sx={{ textAlign: 'right', minWidth: 80 }}>
-                <Typography variant="body2">7:01 AM</Typography>
-                <Typography variant="caption">15/03/2025</Typography>
+            
+            {/* Perfil */}
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexGrow: 1, gap: '10px' }}>
+              <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center' }}>
+                <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 48, height: 48, mb: 0 }} />
+                <Typography variant="subtitle1" fontWeight="bold" sx={{ lineHeight: 1, color: 'rgba(46,46,46,0.911)' }}>Juana Pérez</Typography>
+                <Typography variant="caption" sx={{ color: 'rgba(46,46,46,0.911)' }}>Administrador</Typography>
               </Box>
             </Box>
-          </Toolbar>
-        </AppBar>
+            
+            {/* Búsqueda */}
+            <Box sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '8px',
+              position: 'absolute',
+              top: '50%',
+              transform: 'translateY(-50%)',
+              zIndex: 1
+            }}>
+              <InputBase 
+                placeholder="Buscar..." 
+                sx={{ 
+                  p: '5px 10px',
+                  borderRadius: '18px',
+                  border: '1px solid #949494',
+                  width: '250px',
+                  height: '36px',
+                  bgcolor: 'white'
+                }} 
+              />
+              <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><NightlightIcon fontSize="small" /></IconButton>
+              <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><ZoomInIcon fontSize="small" /></IconButton>
+              <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, '&:hover': { bgcolor: '#eee' } }}><ZoomOutIcon fontSize="small" /></IconButton>
+            </Box>
+            
+            {/* Hora */}
+            <Box sx={{ 
+              textAlign: 'right', 
+              fontSize: 15, 
+              display: 'flex', 
+              flexDirection: 'column', 
+              lineHeight: 1.8,
+              marginLeft: 'auto',
+              zIndex: 2,
+              color: 'rgba(46,46,46,0.911)'
+            }}>
+              <Typography variant="body2">7:01 AM</Typography>
+              <Typography variant="caption">15/03/2025</Typography>
+            </Box>
+          </Box>
+        </Box>
 
         {/* Work Area */}
-        <Box sx={{ p: { xs: 1, md: 4 }, flex: 1, overflowY: 'auto' }}>
-          {/* Filtros */}
-          <Box sx={{ mb: 3 }}>
-            <Typography variant="h6" fontWeight="bold">Filtrar por Fechas</Typography>
-            <Stack direction="row" spacing={2} alignItems="center" mt={1}>
-              <Box>
-                <Typography variant="body2">Fecha Inicio:</Typography>
-                <input type="date" />
+        <Box sx={{
+          bgcolor: 'rgb(236,236,236)',
+          color: 'black',
+          borderRadius: '26px',
+          p: '20px',
+          height: `calc(100vh - 118px)`,
+          width: '100%',
+          overflowY: 'auto',
+          boxSizing: 'border-box',
+          mb: '5px',
+          ml: 0,
+          border: '1px solid rgb(226,226,226)'
+        }}>
+          <Box>
+            <Box>
+              <Typography variant="h4" sx={{ fontSize: 24, fontWeight: 'bold', color: '#333', mb: 2 }}>Dashboard</Typography>
+            </Box>
+            
+            {/* Filtros */}
+            <Box sx={{ 
+              bgcolor: '#fff', 
+              p: '15px', 
+              borderRadius: '8px', 
+              boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
+              mb: '20px' 
+            }}>
+              <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Filtrar por Fechas</Typography>
+              <Box sx={{ display: 'flex', gap: '15px' }}>
+                <Box sx={{ flex: 1 }}>
+                  <Typography variant="body2" sx={{ display: 'block', fontSize: 14, color: '#666', mb: '5px' }}>Fecha Inicio:</Typography>
+                  <input type="date" style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', fontSize: 14 }} />
+                </Box>
+                <Box sx={{ flex: 1 }}>
+                  <Typography variant="body2" sx={{ display: 'block', fontSize: 14, color: '#666', mb: '5px' }}>Fecha Fin:</Typography>
+                  <input type="date" style={{ width: '100%', padding: '8px', border: '1px solid #ddd', borderRadius: '4px', fontSize: 14 }} />
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'end' }}>
+                  <Button 
+                    variant="contained" 
+                    sx={{ 
+                      bgcolor: '#007bff', 
+                      color: '#fff', 
+                      p: '8px', 
+                      border: 'none', 
+                      borderRadius: '4px', 
+                      fontSize: 14, 
+                      cursor: 'pointer',
+                      '&:hover': { bgcolor: '#0056b3' }
+                    }}
+                  >
+                    Filtrar
+                  </Button>
+                </Box>
               </Box>
-              <Box>
-                <Typography variant="body2">Fecha Fin:</Typography>
-                <input type="date" />
+            </Box>
+            
+            {/* Tarjetas de KPIs */}
+            <Box sx={{ display: 'flex', gap: '20px', mb: '20px' }}>
+              <Box sx={{ 
+                flex: 1, 
+                bgcolor: '#17a2b8', 
+                p: '15px', 
+                borderRadius: '8px', 
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '10px' 
+              }}>
+                <ShoppingCartIcon sx={{ fontSize: 36, color: '#fff' }} />
+                <Box>
+                  <Typography sx={{ fontSize: 24, fontWeight: 'bold', color: '#fff', m: 0 }}>0.0</Typography>
+                  <Typography sx={{ fontSize: 14, color: '#fff', m: 0 }}>Ventas del Mes</Typography>
+                </Box>
               </Box>
-              <Button variant="contained">Filtrar</Button>
-            </Stack>
-          </Box>
-
-          {/* Tarjetas de resumen */}
-          <Grid container spacing={2} mb={3}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-                <ShoppingCartIcon color="primary" fontSize="large" />
+              
+              <Box sx={{ 
+                flex: 1, 
+                bgcolor: '#28a745', 
+                p: '15px', 
+                borderRadius: '8px', 
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '10px' 
+              }}>
+                <TrendingUpIcon sx={{ fontSize: 36, color: '#fff' }} />
                 <Box>
-                  <Typography variant="h6">0.0</Typography>
-                  <Typography variant="body2">Ventas del Mes</Typography>
+                  <Typography sx={{ fontSize: 24, fontWeight: 'bold', color: '#fff', m: 0 }}>1</Typography>
+                  <Typography sx={{ fontSize: 14, color: '#fff', m: 0 }}>Pedidos Pendientes</Typography>
                 </Box>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-                <TrendingUpIcon color="secondary" fontSize="large" />
+              </Box>
+              
+              <Box sx={{ 
+                flex: 1, 
+                bgcolor: '#ffc107', 
+                p: '15px', 
+                borderRadius: '8px', 
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '10px' 
+              }}>
+                <WarningIcon sx={{ fontSize: 36, color: '#fff' }} />
                 <Box>
-                  <Typography variant="h6">1</Typography>
-                  <Typography variant="body2">Pedidos Pendientes</Typography>
+                  <Typography sx={{ fontSize: 24, fontWeight: 'bold', color: '#fff', m: 0 }}>1</Typography>
+                  <Typography sx={{ fontSize: 14, color: '#fff', m: 0 }}>Alertas de Stock</Typography>
                 </Box>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-                <WarningIcon color="error" fontSize="large" />
+              </Box>
+              
+              <Box sx={{ 
+                flex: 1, 
+                bgcolor: '#dc3545', 
+                p: '15px', 
+                borderRadius: '8px', 
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)', 
+                display: 'flex', 
+                alignItems: 'center', 
+                gap: '10px' 
+              }}>
+                <PersonAddIcon sx={{ fontSize: 36, color: '#fff' }} />
                 <Box>
-                  <Typography variant="h6">1</Typography>
-                  <Typography variant="body2">Alertas de Stock</Typography>
+                  <Typography sx={{ fontSize: 24, fontWeight: 'bold', color: '#fff', m: 0 }}>2</Typography>
+                  <Typography sx={{ fontSize: 14, color: '#fff', m: 0 }}>Clientes Nuevos</Typography>
                 </Box>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2 }}>
-                <PersonAddIcon color="success" fontSize="large" />
-                <Box>
-                  <Typography variant="h6">2</Typography>
-                  <Typography variant="body2">Clientes Nuevos</Typography>
-                </Box>
-              </Paper>
-            </Grid>
-          </Grid>
-
-          {/* Productos Más Vendidos */}
-          <Grid container spacing={2} mb={3}>
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 2 }}>
-                <Typography variant="h6" fontWeight="bold" mb={2}>Productos Más Vendidos</Typography>
+              </Box>
+            </Box>
+            
+            {/* Tablas */}
+            <Box sx={{ display: 'flex', gap: '20px', mb: '20px' }}>
+              <Box sx={{ flex: 1, bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Productos Más Vendidos</Typography>
                 <TableContainer>
                   <Table size="small">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Producto</TableCell>
-                        <TableCell>Precio</TableCell>
-                        <TableCell>Cantidad Vendida</TableCell>
-                        <TableCell>Ingreso Total</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, fontWeight: 'bold', color: '#333' }}>Producto</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, fontWeight: 'bold', color: '#333' }}>Precio</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, fontWeight: 'bold', color: '#333' }}>Cantidad Vendida</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, fontWeight: 'bold', color: '#333' }}>Ingreso Total</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       <TableRow>
-                        <TableCell>Producto A</TableCell>
-                        <TableCell>$10.00</TableCell>
-                        <TableCell>1</TableCell>
-                        <TableCell>$10.00</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>Producto A</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>$10.00</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>1</TableCell>
+                        <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>$10.00</TableCell>
                       </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 2 }}>
-                <Typography variant="h6" fontWeight="bold" mb={2}>Pedidos por Estado</Typography>
-                <List>
-                  <ListItem secondaryAction={<Typography>1</Typography>}><ListItemText primary="Pendiente" /></ListItem>
-                  <ListItem secondaryAction={<Typography>0</Typography>}><ListItemText primary="Completado" /></ListItem>
-                  <ListItem secondaryAction={<Typography>0</Typography>}><ListItemText primary="Cancelado" /></ListItem>
+              </Box>
+              
+              <Box sx={{ flex: 1, bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Pedidos por Estado</Typography>
+                <List sx={{ p: 0, m: 0 }}>
+                  <ListItem sx={{ display: 'flex', justifyContent: 'space-between', p: '10px 0', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>
+                    <Typography>Pendiente</Typography>
+                    <Typography sx={{ p: '5px 10px', borderRadius: '12px', color: '#fff', fontSize: 12, bgcolor: '#ffc107' }}>1</Typography>
+                  </ListItem>
+                  <ListItem sx={{ display: 'flex', justifyContent: 'space-between', p: '10px 0', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>
+                    <Typography>Completado</Typography>
+                    <Typography sx={{ p: '5px 10px', borderRadius: '12px', color: '#fff', fontSize: 12, bgcolor: '#28a745' }}>0</Typography>
+                  </ListItem>
+                  <ListItem sx={{ display: 'flex', justifyContent: 'space-between', p: '10px 0', fontSize: 14, color: '#666' }}>
+                    <Typography>Cancelado</Typography>
+                    <Typography sx={{ p: '5px 10px', borderRadius: '12px', color: '#fff', fontSize: 12, bgcolor: '#dc3545' }}>0</Typography>
+                  </ListItem>
                 </List>
-              </Paper>
-            </Grid>
-          </Grid>
-
-          {/* Ingresos por Mes */}
-          <Box mb={3}>
-            <Paper sx={{ p: 2 }}>
-              <Typography variant="h6" fontWeight="bold" mb={2}>Ingresos por Mes</Typography>
+              </Box>
+            </Box>
+            
+            {/* Ingresos por Mes */}
+            <Box sx={{ bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)', mb: '20px' }}>
+              <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Ingresos por Mes</Typography>
               <TableContainer>
                 <Table size="small">
                   <TableHead>
                     <TableRow>
-                      <TableCell>Mes</TableCell>
-                      <TableCell>Ingreso Total</TableCell>
+                      <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, fontWeight: 'bold', color: '#333' }}>Mes</TableCell>
+                      <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, fontWeight: 'bold', color: '#333' }}>Ingreso Total</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     <TableRow>
-                      <TableCell>April 2025</TableCell>
-                      <TableCell>$0.00</TableCell>
+                      <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>April 2025</TableCell>
+                      <TableCell sx={{ p: '10px', textAlign: 'left', borderBottom: '1px solid #ddd', fontSize: 14, color: '#666' }}>$0.00</TableCell>
                     </TableRow>
                   </TableBody>
                 </Table>
               </TableContainer>
-            </Paper>
+            </Box>
+            
+            {/* Gráficos */}
+            <Box sx={{ display: 'flex', gap: '20px', mb: '20px' }}>
+              <Box sx={{ flex: 1, bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Gráfico de Ingresos por Mes</Typography>
+                <Box sx={{ 
+                  position: 'relative', 
+                  width: '100%', 
+                  height: '256px', 
+                  bgcolor: '#f9f9f9', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '8px', 
+                  p: '10px', 
+                  boxSizing: 'border-box',
+                  display: 'flex',
+                  alignItems: 'flex-end',
+                  gap: '10px'
+                }}>
+                  <Box sx={{ 
+                    flex: 1, 
+                    width: '30px', 
+                    height: '20%', 
+                    bgcolor: '#17a2b8', 
+                    borderRadius: '4px', 
+                    position: 'relative' 
+                  }}>
+                    <Typography sx={{ 
+                      position: 'absolute', 
+                      bottom: '-20px', 
+                      left: '50%', 
+                      transform: 'translateX(-50%)', 
+                      fontSize: 12, 
+                      color: '#666' 
+                    }}>
+                      April 2025
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '10px', mt: '10px', fontSize: 12, color: '#666' }}>
+                  <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#17a2b8', borderRadius: '2px', mr: '5px' }}></Box>
+                  Ingresos (USD)
+                </Box>
+              </Box>
+              
+              <Box sx={{ flex: 1, bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Gráfico de Pedidos por Estado</Typography>
+                <Box sx={{ 
+                  position: 'relative', 
+                  width: '100%', 
+                  height: '256px', 
+                  bgcolor: '#f9f9f9', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '8px', 
+                  p: '10px', 
+                  boxSizing: 'border-box',
+                  display: 'flex',
+                  alignItems: 'center'
+                }}>
+                  <Box sx={{ 
+                    display: 'flex', 
+                    width: '100%', 
+                    height: '30px', 
+                    borderRadius: '4px', 
+                    overflow: 'hidden' 
+                  }}>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      fontSize: 12, 
+                      color: '#fff', 
+                      width: '50%', 
+                      bgcolor: '#ffc107' 
+                    }}>
+                      Pendiente
+                    </Box>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      fontSize: 12, 
+                      color: '#fff', 
+                      width: '30%', 
+                      bgcolor: '#28a745' 
+                    }}>
+                      Completado
+                    </Box>
+                    <Box sx={{ 
+                      display: 'flex', 
+                      alignItems: 'center', 
+                      justifyContent: 'center', 
+                      fontSize: 12, 
+                      color: '#fff', 
+                      width: '20%', 
+                      bgcolor: '#dc3545' 
+                    }}>
+                      Cancelado
+                    </Box>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '10px', mt: '10px', fontSize: 12, color: '#666' }}>
+                  <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#ffc107', borderRadius: '2px', mr: '5px' }}></Box>
+                  Pendiente
+                  <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#28a745', borderRadius: '2px', mx: '5px' }}></Box>
+                  Completado
+                  <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#dc3545', borderRadius: '2px', mx: '5px' }}></Box>
+                  Cancelado
+                </Box>
+              </Box>
+            </Box>
+            
+            <Box sx={{ display: 'flex', gap: '20px', mb: '20px' }}>
+              <Box sx={{ flex: 1, bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Gráfico de Productos Más Vendidos</Typography>
+                <Box sx={{ 
+                  position: 'relative', 
+                  width: '100%', 
+                  height: '256px', 
+                  bgcolor: '#f9f9f9', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '8px', 
+                  p: '10px', 
+                  boxSizing: 'border-box'
+                }}>
+                  <Box sx={{ 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    mb: '10px' 
+                  }}>
+                    <Typography sx={{ width: '100px', fontSize: 12, color: '#666' }}>Producto A</Typography>
+                    <Box sx={{ 
+                      height: '20px', 
+                      width: '10%', 
+                      bgcolor: '#6f42c1', 
+                      borderRadius: '4px' 
+                    }}></Box>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '10px', mt: '10px', fontSize: 12, color: '#666' }}>
+                  <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#6f42c1', borderRadius: '2px', mr: '5px' }}></Box>
+                  Cantidad Vendida
+                </Box>
+              </Box>
+              
+              <Box sx={{ flex: 1, bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+                <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Gráfico de Clientes Nuevos por Mes</Typography>
+                <Box sx={{ 
+                  position: 'relative', 
+                  width: '100%', 
+                  height: '256px', 
+                  bgcolor: '#f9f9f9', 
+                  border: '1px solid #ddd', 
+                  borderRadius: '8px', 
+                  p: '10px', 
+                  boxSizing: 'border-box'
+                }}>
+                  <Box sx={{ 
+                    position: 'absolute', 
+                    width: '8px', 
+                    height: '8px', 
+                    bgcolor: '#17a2b8', 
+                    borderRadius: '50%', 
+                    left: '0%', 
+                    top: '80%' 
+                  }}></Box>
+                  <Box sx={{ 
+                    position: 'absolute', 
+                    width: '8px', 
+                    height: '8px', 
+                    bgcolor: '#17a2b8', 
+                    borderRadius: '50%', 
+                    left: '100%', 
+                    top: '20%' 
+                  }}></Box>
+                  <Box sx={{ 
+                    position: 'absolute', 
+                    height: '2px', 
+                    width: '100%', 
+                    top: '80%', 
+                    left: 0, 
+                    transform: 'rotate(-30deg)', 
+                    transformOrigin: 'left', 
+                    bgcolor: '#17a2b8' 
+                  }}></Box>
+                  <Typography sx={{ 
+                    position: 'absolute', 
+                    bottom: '-20px', 
+                    left: 0, 
+                    fontSize: 12, 
+                    color: '#666' 
+                  }}>
+                    April 2025
+                  </Typography>
+                </Box>
+                <Box sx={{ display: 'flex', gap: '10px', mt: '10px', fontSize: 12, color: '#666' }}>
+                  <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#17a2b8', borderRadius: '2px', mr: '5px' }}></Box>
+                  Clientes Nuevos
+                </Box>
+              </Box>
+            </Box>
+            
+            <Box sx={{ bgcolor: '#fff', p: '15px', borderRadius: '8px', boxShadow: '0 2px 4px rgba(0,0,0,0.1)' }}>
+              <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 'bold', color: '#333', mb: '15px' }}>Gráfico de Alertas de Stock por Producto</Typography>
+              <Box sx={{ 
+                position: 'relative', 
+                width: '100%', 
+                height: '256px', 
+                bgcolor: '#f9f9f9', 
+                border: '1px solid #ddd', 
+                borderRadius: '8px', 
+                p: '10px', 
+                boxSizing: 'border-box'
+              }}>
+                <Box sx={{ 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  mb: '10px',
+                  position: 'relative'
+                }}>
+                  <Typography sx={{ width: '100px', fontSize: 12, color: '#666' }}>Producto B</Typography>
+                  <Box sx={{ 
+                    height: '20px', 
+                    width: '50%', 
+                    bgcolor: '#dc3545', 
+                    borderRadius: '4px' 
+                  }}></Box>
+                  <Box sx={{ 
+                    height: '20px', 
+                    width: '80%', 
+                    bgcolor: '#17a2b8', 
+                    borderRadius: '4px',
+                    position: 'absolute',
+                    opacity: 0.5
+                  }}></Box>
+                </Box>
+              </Box>
+              <Box sx={{ display: 'flex', gap: '10px', mt: '10px', fontSize: 12, color: '#666' }}>
+                <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#dc3545', borderRadius: '2px', mr: '5px' }}></Box>
+                Stock Actual
+                <Box sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#17a2b8', borderRadius: '2px', mx: '5px' }}></Box>
+                Umbral de Stock
+              </Box>
+            </Box>
           </Box>
-
-          {/* Gráficos (por ahora solo placeholders) */}
-          <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 2, minHeight: 200 }}>
-                <Typography variant="h6" fontWeight="bold" mb={2}>Gráfico de Ingresos por Mes</Typography>
-                <Box sx={{ height: 120, bgcolor: '#e3f2fd', borderRadius: 2, display: 'flex', alignItems: 'flex-end', p: 2 }}>
-                  <Box sx={{ width: '20%', height: '20%', bgcolor: '#17a2b8', borderRadius: 1, mr: 1 }} />
-                  <Typography variant="caption" sx={{ ml: 1 }}>April 2025</Typography>
-                </Box>
-                <Typography variant="caption" color="text.secondary" mt={1}>
-                  <Box component="span" sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#17a2b8', borderRadius: '50%', mr: 1 }} /> Ingresos (USD)
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={6}>
-              <Paper sx={{ p: 2, minHeight: 200 }}>
-                <Typography variant="h6" fontWeight="bold" mb={2}>Gráfico de Pedidos por Estado</Typography>
-                <Box sx={{ height: 40, display: 'flex', alignItems: 'center' }}>
-                  <Box sx={{ width: '50%', height: 20, bgcolor: '#ffc107', borderRadius: 1, mr: 1 }} />
-                  <Box sx={{ width: '30%', height: 20, bgcolor: '#28a745', borderRadius: 1, mr: 1 }} />
-                  <Box sx={{ width: '20%', height: 20, bgcolor: '#dc3545', borderRadius: 1 }} />
-                </Box>
-                <Typography variant="caption" color="text.secondary" mt={1}>
-                  <Box component="span" sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#ffc107', borderRadius: '50%', mr: 1 }} /> Pendiente
-                  <Box component="span" sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#28a745', borderRadius: '50%', mx: 1 }} /> Completado
-                  <Box component="span" sx={{ display: 'inline-block', width: 12, height: 12, bgcolor: '#dc3545', borderRadius: '50%', mx: 1 }} /> Cancelado
-                </Typography>
-              </Paper>
-            </Grid>
-          </Grid>
         </Box>
       </Box>
     </Box>

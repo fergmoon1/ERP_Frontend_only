@@ -33,9 +33,7 @@ const App: React.FC = () => {
                             path="/"
                             element={
                                 <ProtectedRoute>
-                                    <Layout>
-                                        <Navigate to="/dashboard" replace />
-                                    </Layout>
+                                    <Navigate to="/dashboard" replace />
                                 </ProtectedRoute>
                             }
                         />
@@ -43,9 +41,7 @@ const App: React.FC = () => {
                             path="/dashboard"
                             element={
                                 <ProtectedRoute>
-                                    <Layout>
-                                        <Dashboard />
-                                    </Layout>
+                                    <Dashboard />
                                 </ProtectedRoute>
                             }
                         />
