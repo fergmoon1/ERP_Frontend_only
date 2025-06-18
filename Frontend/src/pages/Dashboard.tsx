@@ -51,7 +51,8 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import WarningIcon from '@mui/icons-material/Warning';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 
-const drawerWidth = 270;
+const drawerWidth = 325;
+const marginSize = 8;
 
 const menuItems = [
   { text: 'Dashboard', icon: <DashboardIcon />, path: '/dashboard', active: true },
@@ -68,99 +69,132 @@ const Dashboard: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: '#f4f6f8' }}>
+    <Box sx={{ display: 'flex', minHeight: '100vh', bgcolor: 'white', p: `${marginSize}px` }}>
       {/* Sidebar */}
-      <Drawer
-        variant={isMobile ? 'temporary' : 'permanent'}
-        open={!isMobile || undefined}
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          [`& .MuiDrawer-paper`]: {
+      <Box sx={{
+        height: `calc(100vh - ${marginSize * 2}px)`,
+        mr: `${marginSize}px`,
+        display: { xs: 'none', md: 'block' },
+      }}>
+        <Drawer
+          variant="permanent"
+          open
+          sx={{
             width: drawerWidth,
-            boxSizing: 'border-box',
-            bgcolor: '#111',
-            color: 'white',
-            borderRight: 0,
-            borderRadius: isMobile ? 0 : '20px',
-            m: isMobile ? 0 : 2,
-            minHeight: isMobile ? '100vh' : '96vh',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'space-between',
-          },
-        }}
-      >
-        <Box>
-          {/* Iconos superiores */}
-          <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 1, mt: 2 }}>
-            <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 48, height: 48, border: '2px solid #fff' }} />
-            <IconButton sx={{ bgcolor: '#222', color: 'white', m: 0.5, '&:hover': { bgcolor: '#333' } }}><NotificationsIcon /></IconButton>
-            <IconButton sx={{ bgcolor: '#222', color: 'white', m: 0.5, '&:hover': { bgcolor: '#333' } }}><StarIcon /></IconButton>
-            <IconButton sx={{ bgcolor: '#222', color: 'white', m: 0.5, '&:hover': { bgcolor: '#333' } }}><SearchIcon /></IconButton>
-            <IconButton sx={{ bgcolor: '#222', color: 'white', m: 0.5, '&:hover': { bgcolor: '#333' } }}><TuneIcon /></IconButton>
+            flexShrink: 0,
+            [`& .MuiDrawer-paper`]: {
+              width: drawerWidth,
+              boxSizing: 'border-box',
+              bgcolor: 'rgb(19,19,19)',
+              color: 'rgb(216,216,216)',
+              borderRight: 0,
+              borderRadius: '26px',
+              height: `calc(100vh - ${marginSize * 2}px)`,
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              boxShadow: '5px 0 10px rgba(53,53,53,0.596)',
+              p: '6px',
+            },
+          }}
+        >
+          <Box>
+            {/* Iconos superiores */}
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '20px', pt: '15px', pb: '15px', borderBottom: '1px solid gray' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><DashboardIcon fontSize="small" /></Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><StarIcon fontSize="small" /></Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ArrowLeftIcon fontSize="small" /></Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 30, color: 'white', fontSize: 14 }}><ChevronRightIcon fontSize="small" /></Box>
+            </Box>
+            {/* Círculos de usuario */}
+            <Box sx={{ display: 'flex', justifyContent: 'center', gap: '10px', py: '15px' }}>
+              <Box sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'none' }}>
+                <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 40, height: 40 }} />
+              </Box>
+              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><NotificationsIcon fontSize="small" /></IconButton>
+              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><StarIcon fontSize="small" /></IconButton>
+              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><SearchIcon fontSize="small" /></IconButton>
+              <IconButton sx={{ width: 40, height: 40, borderRadius: '50%', border: '1px solid #f1f1f1', bgcolor: 'white', color: 'black', fontSize: 15, '&:hover': { bgcolor: '#eee' } }}><TuneIcon fontSize="small" /></IconButton>
+            </Box>
+            {/* Menú */}
+            <List sx={{ mt: 2, px: '35px' }}>
+              {menuItems.map((item, idx) => (
+                <ListItem
+                  button
+                  key={item.text}
+                  selected={item.active}
+                  sx={{
+                    bgcolor: item.active ? '#ffcc00' : 'transparent',
+                    color: item.active ? 'black' : 'rgb(216,216,216)',
+                    fontWeight: item.active ? 'bold' : 'normal',
+                    borderRadius: '25px',
+                    border: item.active ? '2px solid #ffcc00' : 'none',
+                    boxShadow: item.active ? '0px 0px 10px #ffcc00' : 'none',
+                    mb: '15px',
+                    pl: 2.5,
+                    pr: 2,
+                    fontSize: 18,
+                    alignItems: 'center',
+                    gap: '10px',
+                    position: 'relative',
+                    '&:hover': {
+                      bgcolor: 'rgba(255,204,0,0.6)',
+                    },
+                  }}
+                >
+                  <ListItemIcon sx={{ color: item.active ? 'black' : 'rgb(216,216,216)', minWidth: 36 }}>{item.icon}</ListItemIcon>
+                  <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: item.active ? 'bold' : 'normal', fontSize: 18 }} />
+                  <ChevronRightIcon fontSize="small" sx={{ position: 'absolute', right: 10, color: item.active ? 'black' : 'rgb(236,236,236)' }} />
+                </ListItem>
+              ))}
+            </List>
           </Box>
-          {/* Menú */}
-          <List sx={{ mt: 4 }}>
-            {menuItems.map((item, idx) => (
-              <ListItem
-                button
-                key={item.text}
-                selected={item.active}
-                sx={{
-                  bgcolor: item.active ? '#ffe600' : 'transparent',
-                  color: item.active ? '#111' : 'white',
-                  borderRadius: 2,
-                  mb: 1,
-                  fontWeight: item.active ? 'bold' : 'normal',
-                  boxShadow: item.active ? '0 0 10px 2px #ffe60099' : 'none',
-                  '&:hover': {
-                    bgcolor: item.active ? '#ffe600' : '#222',
-                    color: item.active ? '#111' : '#ffe600',
-                  },
-                  pl: 3,
-                  pr: 2,
-                }}
-              >
-                <ListItemIcon sx={{ color: item.active ? '#111' : 'white', minWidth: 36 }}>{item.icon}</ListItemIcon>
-                <ListItemText primary={item.text} primaryTypographyProps={{ fontWeight: item.active ? 'bold' : 'normal' }} />
-                <ChevronRightIcon fontSize="small" sx={{ color: item.active ? '#111' : '#fff' }} />
-              </ListItem>
-            ))}
-          </List>
-        </Box>
-        {/* Iconos inferiores */}
-        <Box sx={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', mb: 2 }}>
-          <IconButton sx={{ bgcolor: '#222', color: 'white', '&:hover': { bgcolor: '#333' } }}><ArrowLeftIcon /></IconButton>
-          <IconButton sx={{ bgcolor: '#222', color: 'white', '&:hover': { bgcolor: '#333' } }}><HeadphonesIcon /></IconButton>
-          <IconButton sx={{ bgcolor: '#222', color: 'white', '&:hover': { bgcolor: '#333' } }}><SettingsIcon /></IconButton>
-          <IconButton sx={{ bgcolor: '#222', color: 'white', '&:hover': { bgcolor: '#333' } }}><ArrowUpwardIcon /></IconButton>
-        </Box>
-      </Drawer>
+          {/* Iconos inferiores */}
+          <Box sx={{ textAlign: 'center', py: '20px' }}>
+            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><ArrowLeftIcon /></IconButton>
+            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><HeadphonesIcon /></IconButton>
+            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><SettingsIcon /></IconButton>
+            <IconButton sx={{ width: 50, height: 50, borderRadius: '50%', border: '0.5px solid white', color: 'white', fontSize: '2dvh', mx: 1, bgcolor: 'transparent', '&:hover': { bgcolor: '#222' } }}><ArrowUpwardIcon /></IconButton>
+          </Box>
+        </Drawer>
+      </Box>
 
       {/* Main Content */}
-      <Box sx={{ flexGrow: 1, ml: { xs: 0, md: `${drawerWidth}px` }, display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ flexGrow: 1, pr: `${marginSize}px`, pt: 0, pb: 0, pl: 0, display: 'flex', flexDirection: 'column' }}>
         {/* Topbar */}
-        <AppBar position="static" elevation={0} sx={{ bgcolor: '#e5e5e5', color: '#111', boxShadow: 1, borderRadius: '0 0 20px 20px', px: 2, pt: 1 }}>
-          <Toolbar sx={{ justifyContent: 'space-between', flexWrap: 'wrap', minHeight: 80 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-              <Typography variant="h5" fontWeight="bold" sx={{ mb: 0 }}>Dashboard</Typography>
-              <Typography variant="body2" color="#888" sx={{ ml: 1 }}>Resumen General</Typography>
+        <AppBar position="static" elevation={0} sx={{
+          bgcolor: '#dddcdc',
+          color: 'rgba(46,46,46,0.911)',
+          boxShadow: 1,
+          borderRadius: '26px',
+          height: '100px',
+          mt: 0,
+          mb: `${marginSize}px`,
+          width: '100%',
+          overflow: 'visible',
+          ml: 0
+        }}>
+          <Toolbar sx={{ justifyContent: 'space-between', flexWrap: 'wrap', minHeight: 80, height: '100px', px: 0 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <Typography variant="h5" fontWeight="bold" sx={{ mb: 0, textAlign: 'left' }}>Dashboard</Typography>
+              <Typography variant="body2" color="#888" sx={{ ml: 0, textAlign: 'left' }}>Resumen General</Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap' }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, bgcolor: '#fff', borderRadius: 10, px: 2, py: 0.5, boxShadow: 1 }}>
-                <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 40, height: 40, mr: 1 }} />
-                <Box sx={{ textAlign: 'left' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, bgcolor: '#fff', borderRadius: '50%', px: 2, py: 0.5, boxShadow: 1, height: 48 }}>
+                <Avatar src="/imagenes/foto01 mujer.png" sx={{ width: 48, height: 48, mr: 1 }} />
+                <Box sx={{ textAlign: 'center' }}>
                   <Typography variant="subtitle1" fontWeight="bold" sx={{ lineHeight: 1 }}>Juana Pérez</Typography>
                   <Typography variant="caption" color="#888">Administrador</Typography>
                 </Box>
               </Box>
-              <Paper component="form" sx={{ display: 'flex', alignItems: 'center', px: 1, bgcolor: '#fff', borderRadius: 10, boxShadow: 1, minWidth: 180 }}>
-                <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Buscar..." />
-                <IconButton><NightlightIcon /></IconButton>
-                <IconButton><ZoomInIcon /></IconButton>
-                <IconButton><ZoomOutIcon /></IconButton>
-              </Paper>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, bgcolor: 'transparent', borderRadius: 18, px: 0, py: 0, boxShadow: 0 }}>
+                <Paper component="form" sx={{ display: 'flex', alignItems: 'center', px: 1, bgcolor: '#fff', borderRadius: 18, boxShadow: 1, minWidth: 250, height: 36, border: '1px solid #949494' }}>
+                  <InputBase sx={{ ml: 1, flex: 1 }} placeholder="Buscar..." />
+                </Paper>
+                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, ml: 1, '&:hover': { bgcolor: '#eee' } }}><NightlightIcon fontSize="small" /></IconButton>
+                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, ml: 1, '&:hover': { bgcolor: '#eee' } }}><ZoomInIcon fontSize="small" /></IconButton>
+                <IconButton sx={{ width: 36, height: 36, borderRadius: '50%', bgcolor: 'white', border: '.5px solid #5e5e5e', color: '#5e5e5e', fontSize: 16, ml: 1, '&:hover': { bgcolor: '#eee' } }}><ZoomOutIcon fontSize="small" /></IconButton>
+              </Box>
               <Box sx={{ textAlign: 'right', minWidth: 80 }}>
                 <Typography variant="body2">7:01 AM</Typography>
                 <Typography variant="caption">15/03/2025</Typography>
