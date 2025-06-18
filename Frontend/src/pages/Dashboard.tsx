@@ -89,8 +89,8 @@ const Dashboard: React.FC = () => {
             color: 'rgb(216,216,216)',
             borderRight: 0,
             borderRadius: '26px',
-            margin: '3px',
-            height: 'calc(100vh - 6px)',
+            margin: '4px',
+            height: 'calc(100vh - 8px)',
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'space-between',
@@ -160,18 +160,18 @@ const Dashboard: React.FC = () => {
       </Drawer>
 
       {/* Main Content */}
-      <Box sx={{ flexGrow: 1, pr: '10px', pt: '10px', pb: '10px', pl: '10px', ml: '5px', display: 'flex', flexDirection: 'column' }}>
+      <Box sx={{ flexGrow: 1, display: 'flex', flexDirection: 'column', ml: '4px' }}>
         {/* Topbar */}
         <Box sx={{
           bgcolor: '#dddcdc',
           color: 'rgba(46,46,46,0.911)',
           borderRadius: '26px',
           height: '100px',
-          mt: 0,
-          mb: '10px',
+          mt: '4px',
+          mr: '4px',
+          mb: '4px',
           width: '100%',
           overflow: 'visible',
-          ml: 0,
           display: 'flex',
           alignItems: 'center',
           px: '15px',
@@ -248,13 +248,10 @@ const Dashboard: React.FC = () => {
           bgcolor: 'rgb(236,236,236)',
           color: 'black',
           borderRadius: '26px',
-          p: '20px',
-          height: `calc(100vh - 138px)`,
-          width: '100%',
+          flex: 1,
+          mr: '4px',
           overflowY: 'auto',
           boxSizing: 'border-box',
-          mb: '10px',
-          ml: 0,
           border: '1px solid rgb(226,226,226)'
         }}>
           <Box>
